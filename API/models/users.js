@@ -50,10 +50,6 @@ module.exports = (sequelize, DataTypes) => {
             args: true,
             msg: "Password can't be null!",
           },
-          len: {
-            args: [6, 10],
-            masg: "Password lengtt 6-10 character!",
-          },
         },
       },
     },
