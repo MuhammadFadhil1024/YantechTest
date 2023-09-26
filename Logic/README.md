@@ -1,0 +1,1 @@
+- untuk menjalankan kode pada index.js menggunakan perintah "node index.js"
