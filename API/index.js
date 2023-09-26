@@ -82,7 +82,7 @@ app.post("/api/login", async (req, res) => {
       return res.status(401).json({
         code: 401,
         status: "UNAUTHORIZED",
-        error: `User with email ${email} not found`,
+        error: `User not found`,
       });
     }
 
@@ -152,7 +152,6 @@ app.post("/api/refresh", async (req, res) => {
   if (req.cookies?.refreshToken) {
     const refreshToken = req.cookies.refreshToken;
     const isValidRefreshToken = compareRefreshToken(refreshToken);
-    // console.log(isValidRefreshToken.email);
     if (isValidRefreshToken) {
       const user = await users.findOne({
         where: {
@@ -185,6 +184,16 @@ app.post("/api/refresh", async (req, res) => {
   }
 });
 
+// endpoint for logout
+app.post("/api/logout", async (req, res) => {
+  res.clearCookie("refreshToken");
+  return res.status(200).json({
+    code: 200,
+    status: "SUCCESS",
+    data: "Logout success",
+  });
+});
+
 try {
   if (env !== "test") {
     app.listen(PORT, () => {
@@ -194,3 +203,5 @@ try {
 } catch (error) {
   console.log(error);
 }
+
+module.exports = app;

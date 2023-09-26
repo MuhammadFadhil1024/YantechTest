@@ -6,7 +6,7 @@ const REFRESH_TOKEN_SECRET_KEY = process.env.REFRESH_TOKEN_SECRET_KEY;
 
 const generateToken = (payload) => {
   return jwt.sign(payload, SECRET_KEY, {
-    expiresIn: expiresIn,
+    expiresIn: "1h",
   });
 };
 
